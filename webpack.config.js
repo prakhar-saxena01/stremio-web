@@ -153,20 +153,20 @@ module.exports = (env, argv) => ({
     optimization: {
         minimize: true,
         minimizer: [
-            new TerserPlugin({
-                test: /\.js$/,
-                extractComments: false,
-                terserOptions: {
-                    ecma: 5,
-                    mangle: true,
-                    warnings: false,
-                    output: {
-                        comments: false,
-                        beautify: false,
-                        wrap_iife: true
-                    }
-                }
-            })
+            // new TerserPlugin({
+            //     test: /\.js$/,
+            //     extractComments: false,
+            //     terserOptions: {
+            //         ecma: 5,
+            //         mangle: true,
+            //         warnings: false,
+            //         output: {
+            //             comments: false,
+            //             beautify: false,
+            //             wrap_iife: true
+            //         }
+            //     }
+            // })
         ]
     },
     plugins: [
@@ -185,7 +185,10 @@ module.exports = (env, argv) => ({
             cleanOnceBeforeBuildPatterns: ['*']
         }),
         new CopyWebpackPlugin({
-            patterns: [{ from: 'favicons', to: `${COMMIT_HASH}/favicons` }]
+            patterns: [
+                { from: 'favicons', to: `${COMMIT_HASH}/favicons` },
+                { from: 'node_modules/@stremio/stremio-core-web/stremio_core_web_bg.js', to: '' }
+            ]
         }),
         new MiniCssExtractPlugin({
             filename: `${COMMIT_HASH}/styles/[name].css`

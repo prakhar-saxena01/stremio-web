@@ -6,7 +6,7 @@ const { default: initialize_api, initialize_runtime, get_state, get_debug_state,
 function CoreTransport() {
     const events = new EventEmitter();
 
-    initialize_api(require('@stremio/stremio-core-web/stremio_core_web_bg.wasm'))
+    initialize_api()
         .then(() => initialize_runtime(({ name, args }) => {
             try {
                 events.emit(name, args);
